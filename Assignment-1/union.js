@@ -29,6 +29,7 @@ function deepEqual(obj1, obj2) {
 }
 
 export function union(arr1, arr2) {
+  //creating empty array for storing result
   let result = []
   for (let item of [...arr1, ...arr2]) {
     if (!result.some((el) => deepEqual(el, item))) {
