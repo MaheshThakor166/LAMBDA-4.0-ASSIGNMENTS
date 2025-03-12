@@ -1,0 +1,52 @@
+{
+  "binary_search": {
+    "name": "Binary Search",
+    "description": "Binary search is an efficient algorithm for finding an item from a sorted list of items.",
+    "code": "function binarySearch(arr, target) { let left = 0, right = arr.length - 1; while (left <= right) { let mid = Math.floor((left + right) / 2); if (arr[mid] === target) return mid; if (arr[mid] < target) left = mid + 1; else right = mid - 1; } return -1; }"
+  },
+  "linear_search": {
+    "name": "Linear Search",
+    "description": "Linear search checks each element in the list until the desired element is found.",
+    "code": "function linearSearch(arr, target) { for (let i = 0; i < arr.length; i++) { if (arr[i] === target) return i; } return -1; }"
+  },
+  "bubble_sort": {
+    "name": "Bubble Sort",
+    "description": "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.",
+    "code": "function bubbleSort(arr) { let n = arr.length; for (let i = 0; i < n-1; i++) { for (let j = 0; j < n-i-1; j++) { if (arr[j] > arr[j+1]) { let temp = arr[j]; arr[j] = arr[j+1]; arr[j+1] = temp; } } } return arr; }"
+  },
+  "selection_sort": {
+    "name": "Selection Sort",
+    "description": "Selection Sort divides the array into a sorted and an unsorted region and repeatedly selects the smallest element from the unsorted region.",
+    "code": "function selectionSort(arr) { let n = arr.length; for (let i = 0; i < n - 1; i++) { let minIdx = i; for (let j = i + 1; j < n; j++) { if (arr[j] < arr[minIdx]) { minIdx = j; } } let temp = arr[minIdx]; arr[minIdx] = arr[i]; arr[i] = temp; } return arr; }"
+  },
+  "insertion_sort": {
+    "name": "Insertion Sort",
+    "description": "Insertion Sort builds the final sorted array one item at a time, placing each item in its proper position.",
+    "code": "function insertionSort(arr) { let n = arr.length; for (let i = 1; i < n; i++) { let key = arr[i]; let j = i - 1; while (j >= 0 && arr[j] > key) { arr[j + 1] = arr[j]; j = j - 1; } arr[j + 1] = key; } return arr; }"
+  },
+  "merge_sort": {
+    "name": "Merge Sort",
+    "description": "Merge Sort is a divide-and-conquer algorithm that splits the array into smaller arrays, sorts them, and then merges them back together.",
+    "code": "function mergeSort(arr) { if (arr.length <= 1) return arr; let mid = Math.floor(arr.length / 2); let left = mergeSort(arr.slice(0, mid)); let right = mergeSort(arr.slice(mid)); return merge(left, right); } function merge(left, right) { let result = [], i = 0, j = 0; while (i < left.length && j < right.length) { if (left[i] < right[j]) { result.push(left[i]); i++; } else { result.push(right[j]); j++; } } return result.concat(left.slice(i)).concat(right.slice(j)); }"
+  },
+  "quick_sort": {
+    "name": "Quick Sort",
+    "description": "Quick Sort is a divide-and-conquer algorithm that picks an element as a pivot and partitions the array around it.",
+    "code": "function quickSort(arr) { if (arr.length <= 1) return arr; let pivot = arr[arr.length - 1]; let left = [], right = []; for (let i = 0; i < arr.length - 1; i++) { if (arr[i] < pivot) left.push(arr[i]); else right.push(arr[i]); } return [...quickSort(left), pivot, ...quickSort(right)]; }"
+  },
+  "heap_sort": {
+    "name": "Heap Sort",
+    "description": "Heap Sort uses a binary heap data structure to sort elements efficiently.",
+    "code": "function heapSort(arr) { let n = arr.length; for (let i = Math.floor(n / 2) - 1; i >= 0; i--) heapify(arr, n, i); for (let i = n - 1; i > 0; i--) { [arr[0], arr[i]] = [arr[i], arr[0]]; heapify(arr, i, 0); } return arr; } function heapify(arr, n, i) { let largest = i, left = 2 * i + 1, right = 2 * i + 2; if (left < n && arr[left] > arr[largest]) largest = left; if (right < n && arr[right] > arr[largest]) largest = right; if (largest !== i) { [arr[i], arr[largest]] = [arr[largest], arr[i]]; heapify(arr, n, largest); } }"
+  },
+  "counting_sort": {
+    "name": "Counting Sort",
+    "description": "Counting Sort is a non-comparative sorting algorithm that sorts elements by counting occurrences.",
+    "code": "function countingSort(arr, max) { let count = new Array(max + 1).fill(0), output = new Array(arr.length); arr.forEach(num => count[num]++); for (let i = 1; i < count.length; i++) count[i] += count[i - 1]; arr.forEach(num => { output[count[num] - 1] = num; count[num]--; }); return output; }"
+  },
+  "radix_sort": {
+    "name": "Radix Sort",
+    "description": "Radix Sort sorts numbers digit by digit, starting from the least significant digit to the most significant digit.",
+    "code": "function radixSort(arr) { let maxNum = Math.max(...arr) * 10, divisor = 10; while (divisor < maxNum) { let buckets = [...Array(10)].map(() => []); arr.forEach(num => buckets[Math.floor((num % divisor) / (divisor / 10))].push(num)); arr = [].concat(...buckets); divisor *= 10; } return arr; }"
+  }
+}
